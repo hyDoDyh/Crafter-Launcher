@@ -25,8 +25,8 @@ arguments required by modern Minecraft versions.
 ## Requirements
 
 - Windows (developed and tested on Windows 11)
-- Qt **6.5+** with the `widgets`, `network` and `concurrent` modules
-  (tested with Qt 6.10.1, MinGW 64-bit)
+- Qt **6** with the `widgets`, `network` and `concurrent` modules
+  (developed and tested with Qt 6.10.1, MinGW 64-bit)
 - A C++17 compiler (MinGW or MSVC)
 - QuaZip is bundled in `third_party/quazip`
 
