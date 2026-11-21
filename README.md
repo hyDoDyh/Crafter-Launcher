@@ -1,5 +1,7 @@
 # Crafter Launcher
 
+(In order to use the function of logging into the MC account, please fill in your client ID in the auth.json file.)
+
 A lightweight, open-source launcher for **Minecraft: Java Edition**, built with **Qt 6 / C++17**.
 
 Crafter Launcher can sign in with a Microsoft account, install game versions and their
@@ -104,6 +106,8 @@ Issues and pull requests are welcome. Please keep changes focused and describe h
 were tested.
 
 ## 中文简介
+
+(要使用登录MC账户的功能，请在auth.json文件中填写您的客户端ID。)
 
 Crafter Launcher 是一个基于 Qt 6 / C++17 的开源 Minecraft Java 版启动器，支持微软正版账号
 登录（OAuth 2.0 设备代码流）、离线启动、版本下载与安装、启动配置管理以及自定义游戏目录。
