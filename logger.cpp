@@ -1,7 +1,18 @@
 #include "logger.h"
 #include <QObject>
+#include <QDir>
 Logger* Logger::Instance = nullptr;
-Logger::Logger(QString Path) :file(Path) {
+Logger::Logger() {
+    QDir().mkpath("log");   // 确保目录存在
+
+    QDateTime now = QDateTime::currentDateTime();
+    QString name = now.toString("yyyy-MM-dd_HH-mm-ss-zzz") + ".txt";
+    file.setFileName("log/" + name);
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "Logger: cannot open" << file.fileName()
+        << ":" << file.errorString();
+    }
 }
 void Logger::info(QString message){
 

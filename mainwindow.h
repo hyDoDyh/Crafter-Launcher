@@ -12,6 +12,8 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+class QPushButton;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -28,12 +30,15 @@ private slots:
 
     void on_SetMainFolderButton_clicked();
 
+    void ShowHome();
+
 private:
     Ui::MainWindow *ui;
     LauncherPage *LauncherPageInstance;
     DownloadPage *DownloadPageInstance;
     Logger* logger;
     Download *downloader = Download::getInstance();
+    QPushButton *m_homeButton = nullptr;
     void ExitAnim();
     void SetGameDir();
 };

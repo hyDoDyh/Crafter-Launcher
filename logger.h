@@ -13,7 +13,7 @@ public:
     static Logger* getInstance(){
         if(Instance != nullptr)
             return Instance;
-        return Instance = new Logger("log.txt");
+        return Instance = new Logger();
     }
     void info(QString massage);
     void warning(QString massage);
@@ -23,7 +23,7 @@ private:
     static Logger* Instance;
     QFile file;
     QMutex m_mutex;
-    Logger(QString path);
+    Logger();
 signals:
     void OnLog(QString message);
 };

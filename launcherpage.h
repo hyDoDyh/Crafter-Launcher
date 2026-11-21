@@ -18,6 +18,7 @@ class LauncherPage : public QWidget
 public:
     explicit LauncherPage(QWidget *parent = nullptr);
     ~LauncherPage();
+
 private slots:
     void on_RefreshButton_clicked();
 

@@ -64,7 +64,17 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+# 将目标路径 $$OUT_PWD 替换为 $$DESTDIR
+# 1. 根据当前的构建模式，决定目标文件夹路径
+CONFIG(debug, debug|release) {
+    TARGET_DIR = $$OUT_PWD/debug
+} else {
+    TARGET_DIR = $$OUT_PWD/release
+}
 
+# 2. 将目标路径替换为刚才计算出的 TARGET_DIR
+QMAKE_POST_LINK += $$QMAKE_COPY $$shell_path($$PWD/third_party/quazip/bin/libquazip1-qt6.dll) $$shell_path($$TARGET_DIR) && \
+                   $$QMAKE_COPY $$shell_path($$PWD/theme.json) $$shell_path($$TARGET_DIR)
 RESOURCES += \
     Crafter.qrc
 

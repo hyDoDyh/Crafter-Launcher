@@ -1,0 +1,49 @@
+{
+    "zoom" : 10,
+    "items":
+    [
+        {
+            "name": "LauncherButton",
+            "content" : "启动",
+            "position" : {"x":14, "y":13},
+            "start" : {"x":14, "y":25},
+            "end" : {"x":14, "y":-67},
+            "size" : {"x":12, "y":12},
+            "motion": "OutCubic",
+            "styleSheet":"background-color: #ffaa00;\nborder-radius: 0px;"
+        }
+        ,
+        {
+            "name" : "DownloadButton",
+            "content" : "下载",
+            "position" : {"x":30, "y":13},
+            "start" : {"x":30, "y":25},
+            "end" : {"x":30, "y":-67},
+            "size" : {"x":12, "y":12},
+            "motion": "OutCubic",
+            "styleSheet":"background-color: #ffaa00;\nborder-radius: 0px;"
+        }
+        ,
+        {
+            "name" : "stackedWidget",
+            "content" : "stackedWidget",
+            "position" : {"x":0, "y":60},
+            "start" : {"x":0, "y":60},
+            "end" : {"x":0, "y":0},
+            "size" : {"x":80, "y":60},
+            "motion": "OutCubic",
+            "styleSheet":""
+        }
+        ,
+                {
+            "name" : "SetMainFolderButton",
+            "content" : "设置游戏文件夹",
+            "position" : {"x":14, "y":29},
+            "start" : {"x":14, "y":41},
+            "end" : {"x":14, "y":-51},
+            "size" : {"x":12, "y":12},
+            "motion": "OutCubic",
+            "styleSheet":"background-color: #ffaa00;\nborder-radius: 0px;"
+        }
+    ]
+}
