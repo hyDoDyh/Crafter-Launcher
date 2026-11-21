@@ -42,7 +42,8 @@ mingw32-make -j8      # use nmake with MSVC
 ```
 
 The executable is written to `debug/Crafter.exe` (or `release/Crafter.exe`). The build
-copies `libquazip1-qt6.dll` and `theme.json` next to the executable automatically.
+copies `libquazip1-qt6.dll`, `theme.json` and `auth.json` next to the executable
+automatically.
 
 ## Run
 
@@ -61,9 +62,11 @@ debug\Crafter.exe
   account name under `Auth/Microsoft/LastName`. Access tokens are kept in memory only.
 - Game files, libraries and assets are stored in the game directory selected in the
   launcher.
-- The OAuth client ID can be overridden with the `CRAFTER_MS_CLIENT_ID` environment
-  variable or the `Auth/Microsoft/ClientId` setting. The built-in client ID is a public
-  OAuth client identifier, not a secret.
+- The OAuth client ID is read from `auth.json` in the application directory
+  (`{"clientId": "..."}`); qmake copies it next to the executable at build time.
+  The `CRAFTER_MS_CLIENT_ID` environment variable and the legacy
+  `Auth/Microsoft/ClientId` setting can override it. The client ID is a public OAuth
+  identifier, not a secret.
 
 ## Authentication notes
 
@@ -92,6 +95,7 @@ stored.
 | `download.*`, `downloadthread.*` | HTTP downloads and installation tasks |
 | `minecraftversion.*`, `library.*`, `minecraft.*` | Version/library models and UI |
 | `theme.json` | Main-menu animation and style configuration |
+| `auth.json` | OAuth client ID copied next to the executable at build time |
 | `third_party/quazip` | ZIP extraction used when installing versions |
 
 ## Contributing

@@ -74,9 +74,14 @@ CONFIG(debug, debug|release) {
 
 # 2. 将目标路径替换为刚才计算出的 TARGET_DIR
 QMAKE_POST_LINK += $$QMAKE_COPY $$shell_path($$PWD/third_party/quazip/bin/libquazip1-qt6.dll) $$shell_path($$TARGET_DIR) && \
-                   $$QMAKE_COPY $$shell_path($$PWD/theme.json) $$shell_path($$TARGET_DIR)
+                   $$QMAKE_COPY $$shell_path($$PWD/theme.json) $$shell_path($$TARGET_DIR) && \
+                   $$QMAKE_COPY $$shell_path($$PWD/auth.json) $$shell_path($$TARGET_DIR)
 RESOURCES += \
     Crafter.qrc
+
+DISTFILES += \
+    auth.json \
+    theme.json
 
 # 1. 添加头文件路径
 # 指向包含 quazip.h, JlCompress.h 等文件的目录
