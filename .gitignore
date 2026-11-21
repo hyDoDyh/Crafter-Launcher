@@ -81,3 +81,7 @@ CMakeLists.txt.user*
 .uic/
 /build*/
 .qtcreator/
+
+# Inno Setup 产物与构建临时文件
+/installer/Output/
+/installer/_*/
