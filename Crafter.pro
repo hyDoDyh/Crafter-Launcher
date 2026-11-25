@@ -5,6 +5,15 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
 
+VERSION = 0.2.0
+
+QMAKE_TARGET_COMPANY = Craftable Studio
+QMAKE_TARGET_PRODUCT = Crafter Launcher
+QMAKE_TARGET_DESCRIPTION = Crafter Launcher
+QMAKE_TARGET_COPYRIGHT = Copyright (C) 2026 Craftable Studio
+
+RC_ICONS = installer/crafter.ico
+
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
@@ -32,6 +41,7 @@ SOURCES += \
 
 HEADERS += \
     button.h \
+    clientid.h \
     download.h \
     downloadpage.h \
     downloadthread.h \
@@ -74,13 +84,11 @@ CONFIG(debug, debug|release) {
 
 # 2. 将目标路径替换为刚才计算出的 TARGET_DIR
 QMAKE_POST_LINK += $$QMAKE_COPY $$shell_path($$PWD/third_party/quazip/bin/libquazip1-qt6.dll) $$shell_path($$TARGET_DIR) && \
-                   $$QMAKE_COPY $$shell_path($$PWD/theme.json) $$shell_path($$TARGET_DIR) && \
-                   $$QMAKE_COPY $$shell_path($$PWD/auth.json) $$shell_path($$TARGET_DIR)
+                   $$QMAKE_COPY $$shell_path($$PWD/theme.json) $$shell_path($$TARGET_DIR)
 RESOURCES += \
     Crafter.qrc
 
 DISTFILES += \
-    auth.json \
     theme.json
 
 # 1. 添加头文件路径

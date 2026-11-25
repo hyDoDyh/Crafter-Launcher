@@ -1,7 +1,5 @@
 # Crafter Launcher
 
-(In order to use the function of logging into the MC account, please fill in your client ID in the auth.json file.)
-
 A lightweight, open-source launcher for **Minecraft: Java Edition**, built with **Qt 6 / C++17**.
 
 Crafter Launcher can sign in with a Microsoft account, install game versions and their
@@ -44,8 +42,7 @@ mingw32-make -j8      # use nmake with MSVC
 ```
 
 The executable is written to `debug/Crafter.exe` (or `release/Crafter.exe`). The build
-copies `libquazip1-qt6.dll`, `theme.json` and `auth.json` next to the executable
-automatically.
+copies `libquazip1-qt6.dll` and `theme.json` next to the executable automatically.
 
 ## Run
 
@@ -64,11 +61,9 @@ debug\Crafter.exe
   account name under `Auth/Microsoft/LastName`. Access tokens are kept in memory only.
 - Game files, libraries and assets are stored in the game directory selected in the
   launcher.
-- The OAuth client ID is read from `auth.json` in the application directory
-  (`{"clientId": "..."}`); qmake copies it next to the executable at build time.
-  The `CRAFTER_MS_CLIENT_ID` environment variable and the legacy
-  `Auth/Microsoft/ClientId` setting can override it. The client ID is a public OAuth
-  identifier, not a secret.
+- The OAuth client ID is compiled into the executable from `clientid.h`
+  (`kMicrosoftClientId`); it is a public OAuth identifier, not a secret. Change the
+  constant and rebuild to use a different Azure application.
 
 ## Authentication notes
 
@@ -97,7 +92,7 @@ stored.
 | `download.*`, `downloadthread.*` | HTTP downloads and installation tasks |
 | `minecraftversion.*`, `library.*`, `minecraft.*` | Version/library models and UI |
 | `theme.json` | Main-menu animation and style configuration |
-| `auth.json` | OAuth client ID copied next to the executable at build time |
+| `clientid.h` | Microsoft OAuth client ID compiled into the executable |
 | `third_party/quazip` | ZIP extraction used when installing versions |
 
 ## Contributing
@@ -106,8 +101,6 @@ Issues and pull requests are welcome. Please keep changes focused and describe h
 were tested.
 
 ## 中文简介
-
-(要使用登录MC账户的功能，请在auth.json文件中填写您的客户端ID。)
 
 Crafter Launcher 是一个基于 Qt 6 / C++17 的开源 Minecraft Java 版启动器，支持微软正版账号
 登录（OAuth 2.0 设备代码流）、离线启动、版本下载与安装、启动配置管理以及自定义游戏目录。

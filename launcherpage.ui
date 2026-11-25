@@ -210,6 +210,48 @@
    </property>
    <layout class="QVBoxLayout" name="ConfigLayout">
     <item>
+     <widget class="QWidget" name="ModeRow" native="true">
+      <layout class="QHBoxLayout" name="ModeLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="ModeLabel">
+         <property name="text">
+          <string>登录方式：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="OfflineRadio">
+         <property name="text">
+          <string>离线</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="OnlineRadio">
+         <property name="text">
+          <string>正版</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
      <widget class="QLabel" name="PlayerLabel">
       <property name="text">
        <string>玩家(离线模式下UUID等可以全部填0)</string>
@@ -283,6 +325,19 @@
      <widget class="QLineEdit" name="PlayerClientIDEdit">
       <property name="text">
        <string>0</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="OnlineAccountLabel">
+      <property name="text">
+       <string>正版账号：未登录</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-weight: 600;</string>
       </property>
      </widget>
     </item>

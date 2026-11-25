@@ -1,7 +1,6 @@
 #include "microsoftauth.h"
+#include "clientid.h"
 
-#include <QCoreApplication>
-#include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QNetworkAccessManager>
@@ -14,46 +13,10 @@
 
 namespace {
 
-QString clientIdFromFile()
-{
-    // Client ID 保存在程序目录的 auth.json 中，由 qmake 在构建后拷贝。
-    const QString path = QCoreApplication::applicationDirPath()
-                         + QStringLiteral("/auth.json");
-    QFile file(path);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        return QString();
-
-    const QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
-    if (!doc.isObject())
-        return QString();
-
-    const QJsonObject obj = doc.object();
-    QString id = obj.value(QStringLiteral("clientId")).toString().trimmed();
-    if (id.isEmpty())
-        id = obj.value(QStringLiteral("ClientId")).toString().trimmed();
-    return id;
-}
-
 QString clientIdString()
 {
-    // 优先环境变量（便于临时切换），其次是程序目录的 auth.json，
-    // 最后兼容旧版本写在 Crafter.ini 里的配置。
-    const QByteArray fromEnv = qgetenv("CRAFTER_MS_CLIENT_ID");
-    if (!fromEnv.isEmpty())
-        return QString::fromUtf8(fromEnv).trimmed();
-
-    const QString fromFile = clientIdFromFile();
-    if (!fromFile.isEmpty())
-        return fromFile;
-
-    const QString fromSettings = QSettings()
-                                     .value(QStringLiteral("Auth/Microsoft/ClientId"))
-                                     .toString()
-                                     .trimmed();
-    if (!fromSettings.isEmpty())
-        return fromSettings;
-
-    return QString();
+    // 编译期常量，直接写入 exe，不再依赖 auth.json / 环境变量 / 注册表配置。
+    return QString::fromLatin1(kMicrosoftClientId);
 }
 
 QString scopeString()
@@ -167,13 +130,6 @@ void MicrosoftAuth::startDeviceCodeFlow()
         return;
     }
 
-    if (clientId().isEmpty()) {
-        emit loginFailed(QStringLiteral(
-            "未找到 Client ID：请确认程序目录下存在 auth.json，"
-            "且其中包含 \"clientId\" 字段。"));
-        return;
-    }
-
     m_stage = Stage::DeviceCode;
     setStatus(QStringLiteral("正在向微软申请设备登录代码…"));
 
@@ -198,13 +154,6 @@ void MicrosoftAuth::loginWithRefreshToken(const QString &refreshToken)
         emit loginFailed(QStringLiteral(
             "当前 Qt 运行环境缺少 OpenSSL，无法进行 HTTPS 登录。\n"
             "请把 libssl-3-x64.dll 和 libcrypto-3-x64.dll 放到程序目录后重试。"));
-        return;
-    }
-
-    if (clientId().isEmpty()) {
-        emit loginFailed(QStringLiteral(
-            "未找到 Client ID：请确认程序目录下存在 auth.json，"
-            "且其中包含 \"clientId\" 字段。"));
         return;
     }
 

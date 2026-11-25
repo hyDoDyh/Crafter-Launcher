@@ -8,7 +8,7 @@ rem ===========================================================================
 setlocal
 chcp 65001 >nul 2>&1
 
-set "VER=0.1.0"
+set "VER=0.2.0"
 set "SRC=%~dp0..\build\Desktop_Qt_6_10_1_MinGW_64_bit-Release\beta %VER%"
 set "ICO=%~dp0crafter.ico"
 
