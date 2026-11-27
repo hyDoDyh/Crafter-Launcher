@@ -1,5 +1,7 @@
 # Crafter Launcher
 
+
+(Please fill in the client ID in the auth.json file.)
 A lightweight, open-source launcher for **Minecraft: Java Edition**, built with **Qt 6 / C++17**.
 
 Crafter Launcher can sign in with a Microsoft account, install game versions and their
